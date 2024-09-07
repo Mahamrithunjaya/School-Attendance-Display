@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ABC SCHOOL, XYZ</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header id="grad2">ABC SCHOOL, XYZ</header>
+
+    <main>
+      <section class="announcement">
+        <p class="blink2">
+          <b
+            >ATTENDANCE AND HOMEWORK DISPLAY: 2024-25</b
+          >
+        </p>
+      </section>
+
+      <section class="visitors">
+        <div class="visitor-container">
+          <span>VISITORS:</span>
+          <!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+    <img src="https://hitwebcounter.com/counter/counter.php?page=16133032&style=0009&nbdigits=6&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a> 
+        </div>
+      </section>
+
+      <nav class="main-navigation">
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"
+          ><span class="navicon"></span
+        ></label>
+        <ul class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="#">Subject Enrichment</a>
+            <ul>
+              <li>
+                <a href="SE/se_entry_teacher.php"
+                  >SE Entry by Subject Teacher</a
+                >
+              </li>
+              <li>
+                <a href="SE/display_classwise.php">Display Classwise SE</a>
+              </li>
+              <li>
+                <a href="SE/display_monthwise.php">Display Monthwise SE</a>
+              </li>
+              <li><a href="SE/display_all_data.php">Display All SE Data</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Attendance (STUDENT)</a>
+            <ul>
+              <li>
+                <a href="STUD-ATND/search-attend.php">Check Attendance</a>
+              </li>
+              <li><a href="STUD-ATND/analysis.php">Analysis</a></li>
+              <li><a href="STUD-ATND/below.php">Attendance Below 75%</a></li>
+              <li><a href="STUD-ATND/above.php">Attendance Above 75%</a></li>
+              <li><a href="STUD-ATND/class-report.php">Class Report</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Attendance (TEACHER)</a>
+            <ul>
+              <li>
+                <a href="TCH-ATND/upload_attendance.php"
+                  >Upload Student's Attendance</a
+                >
+              </li>
+              <li>
+                <a href="TCH-ATND/display_short.php"
+                  >Download Shortage of Attendance</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">SUMMER HOLIDAY HW</a>
+            <ul>
+              <li>
+                <a href="hw/homework_form.php">ENTER SUMMER HW 2024-25</a>
+              </li>
+              <li><a href="hw/display-hw.php">DISPLAY SUMMER HW 2024-25</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="images">
+        <div class="image-row">
+          <a href="STUD-ATND/search-attend.php">
+            <img src="img/11.jpg" alt="Search Attendance" />
+          </a>
+          <a href="STUD-ATND/analysis.php">
+            <img src="img/22.jpg" alt="Analysis" />
+          </a>
+          <a href="STUD-ATND/below.php">
+            <img src="img/33.jpg" alt="Attendance Below 75%" />
+          </a>
+          <a href="STUD-ATND/above.php">
+            <img src="img/44.jpg" alt="Attendance Above 75%" />
+          </a>
+          <a href="STUD-ATND/class-report.php">
+            <img src="img/55.jpg" alt="Class Report" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="current-year"></span> ABC SCHOOL, XYZ. All rights reserved.
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navItems = document.querySelectorAll(".main-navigation li > a");
+
+        navItems.forEach((item) => {
+          item.addEventListener("click", function (event) {
+            const nextElement = this.nextElementSibling;
+
+            if (nextElement && nextElement.tagName === "UL") {
+              event.preventDefault();
+
+              if (nextElement.style.display === "block") {
+                nextElement.style.display = "none";
+              } else {
+                // Hide any open dropdowns
+                const openDropdowns = document.querySelectorAll(
+                  ".main-navigation ul ul"
+                );
+                openDropdowns.forEach((dropdown) => {
+                  dropdown.style.display = "none";
+                });
+
+                // Show the clicked dropdown
+                nextElement.style.display = "block";
+              }
+            }
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuItems = document.querySelectorAll(".main-navigation li");
+
+        menuItems.forEach((item) => {
+          const submenu = item.querySelector("ul");
+          if (submenu) {
+            item.addEventListener("mouseenter", function () {
+              submenu.classList.add("open");
+            });
+
+            item.addEventListener("mouseleave", function () {
+              submenu.classList.remove("open");
+            });
+
+            submenu.addEventListener("mouseenter", function () {
+              submenu.classList.add("open");
+            });
+
+            submenu.addEventListener("mouseleave", function () {
+              submenu.classList.remove("open");
+            });
+          }
+        });
+      });
+
+      // Get the current year
+    const currentYear = new Date().getFullYear();
+    // Set the year in the span with id "current-year"
+    document.getElementById('current-year').textContent = currentYear;
+    
+    </script>
+  </body>
+</html>
