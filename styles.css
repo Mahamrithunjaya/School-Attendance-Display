@@ -12,9 +12,9 @@ body {
     height: 108px;
     background-color: red; /* For browsers that do not support gradients */
     background-image: linear-gradient(
-      orangered,
-      yellow,
-      green
+      rgb(79, 79, 228),
+      teal,
+      rgb(209, 98, 98)
     ); /* Standard syntax */
     font-size: 4.24rem;
     text-align: center;
