@@ -1,0 +1,245 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .myDiv {
+    border: 5px outset red;
+    background-color: lightblue;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .my-container {
+    margin-top: 20px;
+  }
+  
+  form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="password"],
+  input[type="text"],
+  select {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #eff0a6;
+  }
+  
+  select {
+    background-color: #eff0a6;
+    color: black;
+  }
+  
+  input[type="submit"],
+  input[type="button"] {
+    width: 100%;
+    background-color: #eff129;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="button"] {
+    width: 15%;
+    border-radius: 20px;
+  }
+  
+  input[type="submit"]:hover,
+  input[type="button"]:hover {
+    background-color: #45a049;
+  }
+  
+  .options {
+    text-align: center;
+  }
+  
+  .options ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .options ul li {
+    margin-bottom: 10px;
+  }
+  
+  .options ul li a {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    width: 30%;
+  }
+  
+  .options ul li:nth-child(1) a {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .options ul li:nth-child(1) a:hover {
+    background-color: #105D97;
+  }
+  
+  .options ul li:nth-child(2) a {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .options ul li:nth-child(2) a:hover {
+    background-color: #1c7e33;
+  }
+  
+  .options ul li:nth-child(3) a {
+    background-color: #ff0707;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .options ul li:nth-child(3) a:hover {
+    background-color: #c00c0c;
+  }
+  
+  .options ul li:nth-child(4) a {
+    background-color: #ffb007;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .options ul li:nth-child(4) a:hover {
+    background-color: #c0810c;
+  }
+  
+  .logout {
+    position: absolute;
+    top: 180px;
+    right: 10px;
+  }
+  
+  .logout button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .logout button:hover {
+    background-color: #c82333;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 10px;
+    background-color: lightblue;
+    margin-top: 20px;
+    clear: both;
+    font-weight: bold;
+  }
+  
+  .footer-text {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .myDiv {
+      padding: 15px;
+      border-radius: 8px;
+    }
+  
+    form {
+      padding: 15px;
+      max-width: 90%;
+    }
+  
+    input[type="password"],
+    input[type="text"],
+    select {
+      width: calc(100% - 20px);
+      padding: 10px;
+    }
+  
+    input[type="button"] {
+      width: 20%;
+    }
+  
+    .options ul li a {
+      width: 50%;
+      font-size: 16px;
+    }
+  
+    .logout {
+      top: calc(25% + 15px);
+    }
+  
+    .footer {
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .myDiv {
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1.4rem;
+    }
+  
+    form {
+      padding: 10px;
+      max-width: 100%;
+    }
+  
+    input[type="password"],
+    input[type="text"],
+    select {
+      width: calc(100% - 16px);
+      padding: 8px;
+    }
+  
+    input[type="button"] {
+      width: 25%;
+    }
+  
+    .options ul li a {
+      width: 70%;
+      font-size: 14px;
+    }
+  
+    .logout {
+      top: 295px;
+    }
+  
+    .footer {
+      padding: 5px;
+    }
+  
+    .delete-form-font-sizes {
+      font-size: 1.3rem;
+    }
+  }
+  
