@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Attendance Analysis</title>
     <link rel="stylesheet" href="styles5.css">
 </head>
@@ -80,12 +82,16 @@
             // Calculate the previous month and year in "MONTH-YEAR" format
             $prev_month_year = strtoupper(date("F-Y", strtotime("first day of previous month")));
 
-            // Fetch students below 75%
-            $sql_below_75 = "SELECT * FROM students WHERE class = '$selected_class' AND attendance_percentage < 75 AND month = '$prev_month_year'";
+            // Fetching students below 75%
+            $sql_below_75 = "SELECT * FROM attendance_records
+                    JOIN students ON attendance_records.roll_number = students.roll_number
+                    WHERE class = '$selected_class' AND attendance_percentage < 75 AND month = '$prev_month_year'";
             $result_below_75 = $conn->query($sql_below_75);
 
-            // Fetch students above 75%
-            $sql_above_75 = "SELECT * FROM students WHERE class = '$selected_class' AND attendance_percentage >= 75 AND month = '$prev_month_year'";
+            // Fetching students above 75%
+            $sql_above_75 = "SELECT * FROM attendance_records
+                    JOIN students ON attendance_records.roll_number = students.roll_number
+                    WHERE class = '$selected_class' AND attendance_percentage >= 75 AND month = '$prev_month_year'";
             $result_above_75 = $conn->query($sql_above_75);
 
             // Output class-wise statistics table
