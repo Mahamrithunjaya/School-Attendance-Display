@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Check Attendance (Student) </title>
     <link rel="stylesheet" href="styles5.css">
 </head>
@@ -43,7 +45,11 @@
         $admissionNo = $_POST['admission-no'];
 
         // Query to fetch student data based on admission number
-        $sql = "SELECT class, student_name, month, attendance, attendance_percentage FROM students WHERE roll_number = ?";
+        $sql = "SELECT students.class, students.student_name, attendance_records.month, 
+                attendance_records.attendance, attendance_records.attendance_percentage
+                FROM attendance_records
+                JOIN students ON attendance_records.roll_number = students.roll_number
+                WHERE students.roll_number = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $admissionNo);
         $stmt->execute();
