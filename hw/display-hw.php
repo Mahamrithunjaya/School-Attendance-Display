@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/logo.png" sizes="16x16">
     <title>Winter Break Homework Details</title>
     <link rel="stylesheet" href="styles3.css">
 </head>
@@ -99,9 +101,8 @@ if (isset($_POST['c']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     <th  style= 'width:15%'>HOMEWORK-2</th>
                     <th  style= 'width:15%'>HOMEWORK-3</th>
                     <th  style= 'width:15%'>HOMEWORK-4</th>
-                    <th  style= 'width:10%'>HOMEWORK-5</th>
-                    <th  style= 'width:10%'>HOMEWORK-6</th>
-                    <th  style= 'width:10%'>HOMEWORK-7</th>
+                    <th  style= 'width:10%'>PDF FILE</th>
+                    <th  style= 'width:10%'>IMAGE FILE</th>
                 </tr>";
         while($row = $result->fetch_assoc()) {
             echo "<tr>
@@ -112,10 +113,27 @@ if (isset($_POST['c']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     <td>".$row["homework2"]."</td>
                     <td>".$row["homework3"]."</td>
                     <td>".$row["homework4"]."</td>
-                    <td>".$row["homework5"]."</td>
-                    <td>".$row["homework6"]."</td>
-                    <td>".$row["homework7"]."</td>
-                </tr>";
+                    <td>";
+
+                    // Checking if the PDF path is not empty before displaying
+                    if (!empty($row["pdf_path"])) {
+                        echo "<a href='" . $row["pdf_path"] . "' download>Download PDF</a>";
+                    } else {
+                        echo "No PDF uploaded";
+                    }
+
+                    echo "</td>
+                        <td>";
+
+                    // Checking if the picture path is not empty before displaying
+                    if (!empty($row["picture_path"])) {
+                        echo "<img src='" . $row["picture_path"] . "' alt='Homework Picture' width='100'>";
+                    } else {
+                        echo "No image uploaded";
+                    }
+
+                    echo "</td>
+                    </tr>";
         }
         echo "</table>";
         echo "</div>";
