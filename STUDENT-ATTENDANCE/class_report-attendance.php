@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Attendance Analysis</title>
     <link rel="stylesheet" href="styles5.css">
     <style>
@@ -120,7 +122,11 @@
             $selectedMonth = $_POST['month'];
 
             // Query to fetch student details based on selected class and month
-            $sql = "SELECT student_name, attendance, total_days, attendance_percentage FROM students WHERE class = ? AND month = ?";
+            $sql = "SELECT students.student_name, attendance_records.attendance,
+                    attendance_records.total_days, attendance_records.attendance_percentage
+                    FROM attendance_records
+                    JOIN students ON attendance_records.roll_number = students.roll_number
+                    WHERE students.class = ? AND attendance_records.month = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ss", $selectedClass, $selectedMonth);
             $stmt->execute();
