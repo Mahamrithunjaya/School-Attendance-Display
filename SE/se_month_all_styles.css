@@ -1,248 +1,247 @@
 table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #f3f8a8;
-    text-align: center;
-    font-size: 20px;
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #f3f8a8;
+  text-align: center;
+  font-size: 20px;
+}
+
+input[type="text"]:focus {
+  background-color: lightblue;
+  border: 3px solid #555;
+}
+
+form {
+  text-align: center;
+}
+
+input,
+select {
+  background-color: #eff0a6;
+  color: black;
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100px;
+  background-color: #f7d1de;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.imp-notice {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+  height: 45px;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  padding: 8px;
+  background-color: #ff99ff;
+  border-radius: 4px;
+  overflow: hidden;
+  animation: underline 2s ease-in-out infinite;
+}
+
+@keyframes underline {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
   }
-  
-  input[type="text"]:focus {
-    background-color: lightblue;
-    border: 3px solid #555;
+  50% {
+    box-shadow: 0 0 0 3px #aa4747;
   }
-  
-  form {
-    text-align: center;
+}
+
+textarea {
+  width: 50%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #d8eff7;
+  font-size: 16px;
+  resize: none;
+}
+
+#grad2 {
+  height: 60px;
+  background-color: red; /* Fallback color */
+  background-image: linear-gradient(orangered, yellow, green);
+  font-size: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  line-height: 60px;
+}
+
+label {
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.btnSubmit {
+  background-color: #79db79;
+  width: 20%;
+  color: black;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btnSubmit:hover {
+  background-color: #45a049;
+}
+
+input[type="submit"] {
+  padding: 14px;
+  font-size: 16px;
+}
+
+td,
+th {
+  font-size: 15px;
+}
+
+.styled-text {
+  color: red;
+  width: 70%;
+  display: block;
+  margin: 8px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #eff0a6;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  position: static;
+  padding: 10px 0;
+  margin-top: 15px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.swipe-notice {
+  margin-top: 0px;
+  margin-right: 12px;
+  text-align: right;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  table {
+    width: 90%;
+    font-size: 18px;
   }
-  
-  input,
+
+  input[type="text"],
   select {
-    background-color: #eff0a6;
-    color: black;
+    width: 50%;
+  }
+
+  textarea {
+    width: 70%;
+  }
+
+  .btnSubmit {
     width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
   }
-  
-  input[type="submit"] {
-    width: 100px;
-    background-color: #f7d1de;
-    color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .styled-text {
+    width: 90%;
+    font-size: 18px;
   }
-  
-  input[type="submit"]:hover {
-    background-color: #45a049;
+}
+
+@media (max-width: 480px) {
+  table {
+    width: 100%;
+    font-size: 16px;
   }
-  
-  div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+
+  td, th {
+    padding: 10px;
   }
-  
+
+  input[type="text"],
+  select {
+    width: 70%;
+  }
+
+  textarea {
+    width: 90%;
+    height: 120px;
+  }
+
+  .btnSubmit {
+    width: 50%;
+  }
+
+  .styled-text {
+    font-size: 16px;
+  }
+
+  #grad2 {
+    font-size: 1.9rem;
+    height: auto;
+    padding: 10px;
+    line-height: 50px;
+  }
+
+  .subject-enrichment-title {
+    font-size: 2.2rem;
+    text-shadow: none;
+  }
+
   .imp-notice {
     font-size: 1.2rem;
-    font-weight: bold;
-    color: #000000;
-    text-align: center;
-    width: 100%;
-    max-width: 1000px;
-    height: 45px;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    padding: 8px;
-    background-color: #ff99ff;
-    border-radius: 4px;
-    overflow: hidden;
-    animation: underline 2s ease-in-out infinite;
+    height: auto;
+    width: auto;
+    padding: 4px 5px;
   }
-  
-  @keyframes underline {
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 transparent;
-    }
-    50% {
-      box-shadow: 0 0 0 3px #aa4747;
-    }
-  }
-  
-  textarea {
-    width: 50%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #d8eff7;
-    font-size: 16px;
-    resize: none;
-  }
-  
-  #grad2 {
-    height: 60px;
-    background-color: red; /* Fallback color */
-    background-image: linear-gradient(orangered, yellow, green);
-    font-size: 60px;
-    text-align: center;
-    font-weight: bold;
-    color: black;
-    line-height: 60px;
-  }
-  
-  label {
-    font-size: 20px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .btnSubmit {
-    background-color: #79db79;
-    width: 20%;
-    color: black;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btnSubmit:hover {
-    background-color: #45a049;
-  }
-  
-  input[type="submit"] {
-    padding: 14px;
-    font-size: 16px;
-  }
-  
-  td,
-  th {
-    font-size: 15px;
-  }
-  
-  .styled-text {
-    color: red;
-    width: 70%;
-    display: block;
-    margin: 8px auto;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    background-color: #eff0a6;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-  
-  footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    position: static;
-    padding: 10px 0;
-    margin-top: 15px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-  }
-  
+
   .table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
   }
-  
-  .swipe-notice {
-    margin-top: 0px;
-    margin-right: 12px;
-    text-align: right;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    table {
-      width: 90%;
-      font-size: 18px;
-    }
-  
-    input[type="text"],
-    select {
-      width: 50%;
-    }
-  
-    textarea {
-      width: 70%;
-    }
-  
-    .btnSubmit {
-      width: 30%;
-    }
-  
-    .styled-text {
-      width: 90%;
-      font-size: 18px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    table {
-      width: 100%;
-      font-size: 16px;
-    }
-  
-    td, th {
-      padding: 10px;
-    }
-  
-    input[type="text"],
-    select {
-      width: 70%;
-    }
-  
-    textarea {
-      width: 90%;
-      height: 120px;
-    }
-  
-    .btnSubmit {
-      width: 50%;
-    }
-  
-    .styled-text {
-      font-size: 16px;
-    }
-  
-    #grad2 {
-      font-size: 1.9rem;
-      height: auto;
-      padding: 10px;
-      line-height: 50px;
-    }
-  
-    .subject-enrichment-title {
-      font-size: 2.2rem;
-      text-shadow: none;
-    }
-  
-    .imp-notice {
-      font-size: 1.2rem;
-      height: auto;
-      width: auto;
-      padding: 4px 5px;
-    }
-  
-    .table-container {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
-    }
-  }
-  
+}
