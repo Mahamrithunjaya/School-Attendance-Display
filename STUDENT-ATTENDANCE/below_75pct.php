@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Attendance Below 75</title>
     <link rel="stylesheet" href="styles5.css">
 </head>
@@ -33,11 +35,15 @@
 
     <?php
 
-    // Calculate the previous month and year in "MONTH-YEAR" format
+    // Calculating the previous month and year in "MONTH-YEAR" format
     $prev_month_year = strtoupper(date("F-Y", strtotime("first day of previous month")));
 
-    // Query to fetch all data 
-    $sql = "SELECT class, student_name, month, attendance, attendance_percentage FROM students WHERE attendance_percentage < 75 AND month = '$prev_month_year'";
+    // Query to fetch all data
+    $sql = "SELECT students.class, students.student_name, attendance_records.month,
+        attendance_records.attendance, attendance_records.attendance_percentage
+        FROM attendance_records
+        JOIN students ON attendance_records.roll_number = students.roll_number
+        WHERE attendance_percentage < 75 AND month = '$prev_month_year'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -52,7 +58,7 @@
                 <th>PERCENTAGE </th>
                 </tr>";
 
-                // Initialize the counter
+            // Initializing the counter
             $srNo = 1;
 
         while ($row = $result->fetch_assoc()) {
@@ -65,7 +71,7 @@
                 <td>" . $row['attendance_percentage'] . "%</td>
                 </tr>";
 
-                // Increment the counter
+            // Incrementing the counter
             $srNo++;
         }
         echo "</table>";
