@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>SUBJECT ENRICHMENT ENTRY</title>
     <link rel="stylesheet" href="se_entry_styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
