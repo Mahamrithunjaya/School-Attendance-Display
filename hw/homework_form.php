@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/logo.png" sizes="16x16">
     <title>Homework Submission Form</title>
     <link rel="stylesheet" href="styles2.css">
 </head>
+
 <body>
     <div class="container">
         <h1>ABC SCHOOL, XYZ</h1>
@@ -13,7 +17,7 @@
             <input type="button" name="back" value="BACK" onclick="window.location.href='../index.html';">
         </div>
 
-        <p class="text-before-gifs">ग्रीष्मकालीन  अवकाश के लिए गृहकार्य  2024-25</p>
+        <p class="text-before-gifs">ग्रीष्मकालीन अवकाश के लिए गृहकार्य 2024-25</p>
 
         <div class="gifs">
             <img src="img/6.gif" width="150" height="100" alt="GIF 1">
@@ -22,10 +26,10 @@
         </div>
 
         <div class="visitor-counter">
-        <span>VISITORS:</span>
+            <span>VISITORS:</span>
             <!-- hitwebcounter Code START -->
-<a href="https://www.hitwebcounter.com" target="_blank">
-<img src="https://hitwebcounter.com/counter/counter.php?page=16133247&style=0036&nbdigits=6&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>  
+            <a href="https://www.hitwebcounter.com" target="_blank">
+                <img src="https://hitwebcounter.com/counter/counter.php?page=16133247&style=0036&nbdigits=6&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites" border="0" /></a>
         </div>
 
         <form method="post" action="submit_homework.php" id="myForm">
@@ -132,16 +136,14 @@
                 <textarea id="t4" name="t4" maxlength="500"></textarea>
             </div>
             <div class="form-group">
-                <label for="t5">HOMEWORK 5 (MAX 500 CHARACTERS)</label>
-                <textarea id="t5" name="t5" maxlength="500"></textarea>
+                <!-- PDF upload -->
+                <label for="pdf">Homework PDF (optional)</label>
+                <input type="file" id="pdf" name="pdf" accept="application/pdf" onchange="validatePDF(this)">
             </div>
             <div class="form-group">
-                <label for="t6">HOMEWORK 6 (MAX 500 CHARACTERS)</label>
-                <textarea id="t6" name="t6" maxlength="500"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="t7">HOMEWORK 7 (MAX 500 CHARACTERS)</label>
-                <textarea id="t7" name="t7" maxlength="500"></textarea>
+                <!-- Picture upload -->
+                <label for="picture">UPLOAD PICTURE (optional)</label>
+                <input type="file" id="picture" name="picture" accept="image/*" onchange="validateImage(this)">
             </div>
             <div class="buttons center">
                 <input type="submit" name="sub1" value="SUBMIT">
@@ -155,4 +157,40 @@
     </footer>
 
 </body>
+
+<script>
+    function validateFileSizeAndType(fileInput, maxFileSizeMB, allowedTypes) {
+        const file = fileInput.files[0];
+        if (file) {
+            const fileSizeMB = file.size / (1024 * 1024);
+            const fileType = file.type;
+
+            // Checking file size
+            if (fileSizeMB > maxFileSizeMB) {
+                alert(`File size must be under ${maxFileSizeMB}MB.`);
+                fileInput.value = ''; // Clearing the input
+                return false;
+            }
+
+            // Checking file type
+            if (!allowedTypes.includes(fileType)) {
+                alert(`Invalid file type. Allowed types: ${allowedTypes.join(", ")}`);
+                fileInput.value = ''; // Clearing the input
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validatePDF(input) {
+        const allowedPDFTypes = ['application/pdf'];
+        return validateFileSizeAndType(input, 2, allowedPDFTypes); // Setting max size to 2MB for PDF
+    }
+
+    function validateImage(input) {
+        const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+        return validateFileSizeAndType(input, 2, allowedImageTypes); // Setting max size to 2MB for Images
+    }
+</script>
+
 </html>
