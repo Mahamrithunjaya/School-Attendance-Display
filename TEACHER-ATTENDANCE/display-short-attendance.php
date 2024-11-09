@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
 
                 // Display form to enter attendance details
                 $form_html .= "<h2>Lack of Attendance Details</h2>";
-                $form_html .= "<form method='post' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>";
+                $form_html .= "<form method='post' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "'>";
                 $form_html .= "<label>Date: </label>";
                 $form_html .= "<input type='date' name='date' required><br><br>";
                 $form_html .= "<label>Teacher Name</label>";
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                 $form_html .= "</select><br><br>";
                 $form_html .= "<label>Topic (MAX 500 WORDS)</label>";
                 $form_html .= "<textarea name='topic' rows='6' cols='60' required></textarea><br><br>";
-                
+
                 $form_html .= "<input type='submit' name='submit' value='Submit'>";
                 $form_html .= "</form>";
             }
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $designation = $_POST['designation'];
     $class = $_POST['class'];
     $topic = $_POST['topic'];
-    
+
 
     // Sanitize inputs
     $date = mysqli_real_escape_string($conn, $date);
@@ -110,10 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $insert_query = "INSERT INTO attendance (date, teacher_name, designation, class, topic) VALUES ('$date', '$teacher_name', '$designation', '$class', '$topic')";
     if ($conn->query($insert_query) === TRUE) {
         echo "<script>alert('Attendance details successfully stored.');
-              window.location.href = '".$_SERVER["PHP_SELF"]."';</script>";
+              window.location.href = '" . $_SERVER["PHP_SELF"] . "';</script>";
         exit;
     } else {
-        echo "<script>alert('Error storing attendance details: ".$conn->error."');
+        echo "<script>alert('Error storing attendance details: " . $conn->error . "');
               window.history.back();</script>";
         exit;
     }
@@ -125,50 +125,81 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Attendance Details</title>
     <link rel="stylesheet" href="styles4.css">
     <style>
-      
-input[type=date] {
-    padding: 8px;
-    width: calc(100% - 24px);
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    background-color: #eff0a6;
-    border-radius: 4px;
-    font-size: 16px;
-}
+        input[type=date] {
+            padding: 8px;
+            width: calc(100% - 24px);
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            background-color: #eff0a6;
+            border-radius: 4px;
+            font-size: 16px;
+        }
 
-/* Styles for textarea */
-textarea {
-    width: calc(100% - 24px);
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    background-color: #eff0a6;
-    border-radius: 4px;
-    resize: vertical; /* Allow vertical resizing of textarea */
-    font-size: 16px;
-    line-height: 1.5;
-}
+        /* Styles for textarea */
+        textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            background-color: #eff0a6;
+            border-radius: 4px;
+            resize: vertical;
+            /* Allow vertical resizing of textarea */
+            font-size: 16px;
+            line-height: 1.5;
+        }
 
-/* Optional: Styles for form labels */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        /* Optional: Styles for form labels */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
+        .logout {
+            position: static;
+            margin: 30px auto;
+            width: fit-content;
+        }
+
+        @media (max-width: 480px) {
+            .logout {
+                margin-top: 40px;
+            }
+
+            .short-form form {
+                padding-top: 54px;
+            }
+
+            .title-header {
+                margin-top: 60px;
+                margin-bottom: 5px;
+            }
+
+            .school-name {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="myDiv">
+        <img src="../img/logo.png" alt="Logo 1" class="logo-left">
         <h2>ABC School, XYZ</h2>
         <h3>DETAILS OF CLASS ABSENT</h3>
+        <img src="../img/logo2.png" alt="Logo 2" class="logo-right">
     </div>
 
     <?php
@@ -183,47 +214,47 @@ label {
         // Display login form if not authenticated
         if (!$authenticated) {
         ?>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <label>ENTER USERNAME</label>
-            <input type="text" id="username" name="username" required><br><br>
-            <label>ENTER PASSWORD</label>
-            <input type="password" id="pwd" name="pwd" required><br><br>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <label>ENTER USERNAME</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label>ENTER PASSWORD</label>
+                <input type="password" id="pwd" name="pwd" required><br><br>
 
-            <label for="class-name">CLASS</label>
-            <select id="class-name" name="class">
-                <option value="" disabled selected>Select</option>
-                <option value="1A">1A</option><br>
-                <option value="1B">1B</option><br>
-                <option value="2A">2A</option><br>
-                <option value="2B">2B</option><br>
-                <option value="3A">3A</option><br>
-                <option value="3B">3B</option><br>
-                <option value="BALVATIKA-III">BALVATIKA-III</option><br>
-                <option value="4A">4A</option><br>
-                <option value="4B">4B</option><br>
-                <option value="5A">5A</option><br>
-                <option value="5B">5B</option><br>
-                <option value="6A">6A</option><br>
-                <option value="6B">6B</option><br>
-                <option value="7A">7A</option><br>
-                <option value="7B">7B</option><br>
-                <option value="8A">8A</option><br>
-                <option value="8B">8B</option><br>
-                <option value="8C">8C</option><br>
-                <option value="9A">9A</option><br>
-                <option value="9B">9B</option><br>
-                <option value="9C">9C</option><br>
-                <option value="10A">10A</option><br>
-                <option value="10B">10B</option><br>
-                <option value="10C">10C</option><br>
-                <option value="11-SCI">11-SCI</option><br>
-                <option value="11-COMM">11-COMM</option><br>
-                <option value="12-SCI">12-SCI</option><br>
-                <option value="12-COMM">12-COMM</option><br>
-            </select><br><br>
+                <label for="class-name">CLASS</label>
+                <select id="class-name" name="class">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1A">1A</option><br>
+                    <option value="1B">1B</option><br>
+                    <option value="2A">2A</option><br>
+                    <option value="2B">2B</option><br>
+                    <option value="3A">3A</option><br>
+                    <option value="3B">3B</option><br>
+                    <option value="BALVATIKA-III">BALVATIKA-III</option><br>
+                    <option value="4A">4A</option><br>
+                    <option value="4B">4B</option><br>
+                    <option value="5A">5A</option><br>
+                    <option value="5B">5B</option><br>
+                    <option value="6A">6A</option><br>
+                    <option value="6B">6B</option><br>
+                    <option value="7A">7A</option><br>
+                    <option value="7B">7B</option><br>
+                    <option value="8A">8A</option><br>
+                    <option value="8B">8B</option><br>
+                    <option value="8C">8C</option><br>
+                    <option value="9A">9A</option><br>
+                    <option value="9B">9B</option><br>
+                    <option value="9C">9C</option><br>
+                    <option value="10A">10A</option><br>
+                    <option value="10B">10B</option><br>
+                    <option value="10C">10C</option><br>
+                    <option value="11-SCI">11-SCI</option><br>
+                    <option value="11-COMM">11-COMM</option><br>
+                    <option value="12-SCI">12-SCI</option><br>
+                    <option value="12-COMM">12-COMM</option><br>
+                </select><br><br>
 
-            <input type="submit" name="sub1" value="Submit">
-        </form>
+                <input type="submit" name="sub1" value="Submit">
+            </form>
         <?php } ?>
 
         <?php
@@ -232,11 +263,11 @@ label {
             echo $form_html;
         ?>
 
-        <div class="logout">
-            <form method="post" action="logout.php">
-                <button type="submit" name="logout">Logout</button>
-            </form>
-        </div>
+            <div class="logout">
+                <form method="post" action="logout.php">
+                    <button type="submit" name="logout">Logout</button>
+                </form>
+            </div>
         <?php } ?>
 
         <center>
@@ -248,4 +279,5 @@ label {
         &copy; <?php echo date("Y"); ?> ABC School, XYZ. All rights reserved.
     </footer>
 </body>
+
 </html>
