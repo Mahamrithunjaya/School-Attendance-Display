@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if user is authenticated
+// Checking if user is authenticated
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: upload_attendance.php"); // Redirect to login page if not authenticated
     exit();
@@ -20,13 +20,6 @@ $total_days = $month = $class = "";
 // Function to sanitize input
 function sanitize_input($conn, $data) {
     return mysqli_real_escape_string($conn, $data);
-}
-
-// Function to check if a record exists
-function recordExists($conn, $roll_number, $class, $month) {
-    $sql = "SELECT 1 FROM students WHERE roll_number = '$roll_number' AND class = '$class' AND month = '$month'";
-    $result = $conn->query($sql);
-    return $result->num_rows > 0;
 }
 
 // Function to calculate attendance percentage
@@ -55,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['total_days'])) {
         $_SESSION['month'] = $month;
         $_SESSION['class'] = $class;
 
-        // Fetch student names for selected class and store if not already present
+        // Fetching student names for selected class
         $sql_students = "SELECT DISTINCT roll_number, student_name FROM students WHERE class = '$class'";
         $result_students = $conn->query($sql_students);
 
@@ -64,30 +57,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['total_days'])) {
                 $roll_number = $row['roll_number'];
                 $student_name = $row['student_name'];
 
-                // Insert student name if not already present
-                $check_sql = "SELECT * FROM students WHERE roll_number = '$roll_number' AND class = '$class'";
-                $check_result = $conn->query($check_sql);
-
-                if ($check_result->num_rows == 0) {
-                    $insert_sql = "INSERT INTO students (roll_number, student_name, class) VALUES ('$roll_number', '$student_name', '$class')";
-                    $conn->query($insert_sql); // Ignore errors for duplicate entries
-                }
+                // Proceed to enter attendance details
+                $success_message = "Proceed to enter attendance details.";
             }
+        } else {
+            $error_message = "No students found for the selected class.";
         }
-
-        // Proceed to enter attendance details
-        $success_message = "Proceed to enter attendance details.";
     } else {
         $error_message = "Please enter a valid number of days, select a month, and select a class.";
     }
 }
 
-// Update attendance records in students table
+// Updating attendance records in attendance_records table
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['roll_number']) && isset($_POST['attendance'])) {
     $roll_numbers = $_POST['roll_number'];
     $attendances = $_POST['attendance'];
 
-    // Check if session variables are set before using them
+    // Checking if session variables are set before using them
     if (isset($_SESSION['class']) && isset($_SESSION['month'])) {
         $class = $_SESSION['class'];
         $month = $_SESSION['month'];
@@ -97,42 +83,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['roll_number']) && isse
             $roll_number = sanitize_input($conn, $roll_numbers[$i]);
             $attendance = (int)sanitize_input($conn, $attendances[$i]); // Ensure attendance is an integer
 
-            // Calculate attendance percentage
+            // Calculating attendance percentage
             $attendance_percentage = calculateAttendancePercentage($attendance, $_SESSION['total_days']);
 
-            // Fetch student name for the roll number
-            $name_sql = "SELECT student_name FROM students WHERE roll_number = '$roll_number' AND class = '$class'";
-            $name_result = $conn->query($name_sql);
-
-            if ($name_result->num_rows > 0) {
-                $name_row = $name_result->fetch_assoc();
-                $student_name = $name_row['student_name'];
-
-            // Check if record exists
-            $check_sql = "SELECT * FROM students WHERE roll_number = '$roll_number' AND class = '$class' AND month = '$month'";
+            // Checking if record exists in attendance_records table
+            $check_sql = "SELECT * FROM attendance_records WHERE roll_number = '$roll_number' AND month = '$month'";
             $check_result = $conn->query($check_sql);
 
             if ($check_result->num_rows > 0) {
-                // Update existing record
-                $update_sql = "UPDATE students SET attendance = $attendance, attendance_percentage = $attendance_percentage, total_days = {$_SESSION['total_days']} WHERE roll_number = '$roll_number' AND class = '$class' AND month = '$month' AND student_name = '$student_name'";
+                // Updating existing record
+                $update_sql = "UPDATE attendance_records SET attendance = $attendance, attendance_percentage = $attendance_percentage, total_days = {$_SESSION['total_days']} WHERE roll_number = '$roll_number' AND month = '$month'";
                 if ($conn->query($update_sql) === TRUE) {
                     $success_message = "Attendance updated successfully.";
                 } else {
                     $error_message = "Error updating attendance records: " . $conn->error;
                 }
             } else {
-                // Insert new record
-                $insert_sql = "INSERT INTO students (roll_number, student_name, class, month, attendance, attendance_percentage, total_days) VALUES ('$roll_number','$student_name', '$class', '$month', $attendance, $attendance_percentage, {$_SESSION['total_days']})";
+                // Inserting new record
+                $insert_sql = "INSERT INTO attendance_records (roll_number, month, attendance, attendance_percentage, total_days) VALUES ('$roll_number','$month', $attendance, $attendance_percentage, {$_SESSION['total_days']})";
                 if ($conn->query($insert_sql) === TRUE) {
                     $success_message = "Attendance inserted successfully.";
                 } else {
                     $error_message = "Error inserting attendance records: " . $conn->error;
                 }
             }
-        } else {
-            $error_message = "Student name not found for roll number: $roll_number";
         }
-    }
 
         // Unset session variables after successful update
         unset($_SESSION['total_days']);
@@ -143,31 +118,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['roll_number']) && isse
     }
 }
 
-// Fetch student roll numbers for selected class
+// Fetching student roll numbers for selected class
 if (isset($_SESSION['class'])) {
     $class = $_SESSION['class'];
 
-    $sql = "SELECT DISTINCT roll_number FROM students WHERE class = '$class'";
+    $sql = "SELECT roll_number, student_name FROM students WHERE class = '$class'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $students = [];
-        while ($row = $result->fetch_assoc()) {
-            // Fetch student names based on the distinct roll numbers
-            $roll_number = $row['roll_number'];
-            $name_sql = "SELECT student_name FROM students WHERE roll_number = '$roll_number' AND class = '$class'";
-            $name_result = $conn->query($name_sql);
-            if ($name_result->num_rows > 0) {
-                $name_row = $name_result->fetch_assoc();
-                $row['student_name'] = $name_row['student_name'];
-                $students[] = $row;
-            }
-        }
+        $students = $result->fetch_all(MYSQLI_ASSOC);
     } else {
         $error_message = "No students found for the selected class.";
     }
 }
-
 
 // Close connection
 $conn->close();
@@ -179,6 +142,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16">
     <title>Update Attendance</title>
     <link rel="stylesheet" href="styles4.css"> <!-- Ensure your external stylesheet is linked -->
     <style>
@@ -263,8 +228,10 @@ $conn->close();
 <body>
     <div class="container">
         <div class="myDiv">
+            <img src="../img/logo.png" alt="Logo 1" class="logo-left">
             <h2>ABC School, XYZ</h2>
             <h3>UPDATE CLASS ATTENDANCE OF STUDENTS</h3>
+            <img src="../img/logo2.png" alt="Logo 2" class="logo-right">
         </div>
 
         <!-- Display Form to Enter Attendance Details -->
