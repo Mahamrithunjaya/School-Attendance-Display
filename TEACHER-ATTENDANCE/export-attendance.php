@@ -1,5 +1,10 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 session_start(); // Start session
 
 if (!isset($_SESSION['class'])) {
@@ -18,11 +23,16 @@ $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 
 // Query to fetch attendance data from the database
-$sql = "SELECT roll_number, student_name, month, total_days, attendance, attendance_percentage FROM students WHERE class = '".$_SESSION['class']."'";
+$sql = "SELECT students.roll_number, students.student_name, students.class, attendance_records.month,
+ attendance_records.total_days, attendance_records.attendance, attendance_records.attendance_percentage
+        FROM attendance_records
+        JOIN students ON attendance_records.roll_number = students.roll_number
+        WHERE students.class = '".$_SESSION['class']."'";
+
 $result = $conn->query($sql);
 
 if ($result) {
-    // Set the header for the Excel sheet
+    // Setting the header for the Excel sheet
     $sheet->setCellValue('A1', 'Admission Number');
     $sheet->setCellValue('B1', 'Student Name');
     $sheet->setCellValue('C1', 'Month');
@@ -30,7 +40,7 @@ if ($result) {
     $sheet->setCellValue('E1', 'Attended Classes');
     $sheet->setCellValue('F1', 'Attendance Percentage');
 
-    // Set the width for each column
+    // Setting the width for each column
     $sheet->getColumnDimension('A')->setWidth(25); // Set width for Admission Number column
     $sheet->getColumnDimension('B')->setWidth(30); // Set width for Student Name column
     $sheet->getColumnDimension('C')->setWidth(20); // Set width for Month column
@@ -38,11 +48,11 @@ if ($result) {
     $sheet->getColumnDimension('E')->setAutoSize(true); // Set width for Attended Classes column
     $sheet->getColumnDimension('F')->setAutoSize(true); // Set width for Attendance Percentage column
 
-    // Make the header row bold, increase font size
+    // Making the header row bold, increase font size
     $headerStyleArray = [
         'font' => [
             'bold' => true,
-            'size' => 16, // Set the font size to 12 (adjust as needed)
+            'size' => 16, // Setting the font size to 12 (adjust as needed)
         ],
         'alignment' => [
             'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Center horizontally
@@ -64,7 +74,7 @@ if ($result) {
         $sheet->setCellValue('F' . $rowNumber, $row['attendance_percentage'] / 100);
 
 
-        // Apply conditional formatting for attendance percentage < 75%
+        // Applying conditional formatting for attendance percentage < 75%
         if ($row['attendance_percentage'] < 75) {
             $sheet->getStyle('A' . $rowNumber . ':F' . $rowNumber)
                   ->getFont()
@@ -75,7 +85,7 @@ if ($result) {
         $rowNumber++;
     }
 
-    // Make the content rows center horizontally and vertically
+    // Making the content rows center horizontally and vertically
     $contentStyleArray = [
         'alignment' => [
             'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Center horizontally
@@ -84,13 +94,13 @@ if ($result) {
     ];
     $sheet->getStyle('B:F')->applyFromArray($contentStyleArray);
 
-    // Apply percentage format to the 'Attendance Percentage' column
+    // Applying percentage format to the 'Attendance Percentage' column
     $sheet->getStyle('F2:F' . ($rowNumber - 1))
           ->getNumberFormat()
           ->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_PERCENTAGE_00);
 
 
-    // Apply borders to all cells within the used range
+    // Applying borders to all cells within the used range
     $usedRange = 'A1:F' . ($rowNumber - 1); // From A1 to the last used row
     $borderStyleArray = [
         'borders' => [
