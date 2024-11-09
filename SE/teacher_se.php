@@ -12,9 +12,10 @@
 
 <body>
 
-    <div class="header">
-        <h2>ABC School, XYZ</h2>
-        <h3>ENTER SUBJECT ENRICHMENT DETAILS : 2024-25 लिखें</h3>
+    <div id="grad2">
+        <img src="../img/logo.png" alt="Logo 1" class="logo-left">
+        <b>ABC School, XYZ</b>
+        <img src="../img/logo_2.png" alt="Logo 2" class="logo-right">
     </div>
 
     <div class="form-container">

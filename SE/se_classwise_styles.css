@@ -98,18 +98,44 @@ textarea {
 }
 
 #grad2 {
-  height: 60px;
+  height: 85px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(
     orangered,
     yellow,
     green
   ); /* Standard syntax (must be last) */
-  font-size: 60px;
+  font-size: 3.6rem;
   text-align: center;
   font-weight: bold;
   color: black;
   line-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.logo-left,
+.logo-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  /* Adjust size as needed */
+  height: auto;
+}
+
+.logo-left {
+  left: 20px;
+  /* Position from the left */
+}
+
+.logo-right {
+  right: 20px;
+  /* Position from the right */
 }
 
 font {
@@ -209,6 +235,31 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+
+  #grad2 {
+    font-size: 2.2rem;
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .logo-left,
+  .logo-right {
+    width: 70px;
+    position: static;
+    margin-top: 15%;
+  }
+
+  .subject-enrichment-title {
+    font-size: 2.2rem;
+  }
+
+  .notice-h2 {
+    font-size: 1.1rem;
+    height: auto;
+    width: auto;
+    padding: 4px 5px;
+  }
+
   table {
     width: 90%;
     font-size: 18px;
@@ -240,6 +291,14 @@ footer {
 }
 
 @media (max-width: 480px) {
+
+  .logo-left,
+  .logo-right {
+    width: 64px;
+    position: static;
+    margin-top: 12%;
+  }
+
   table {
     width: 100%;
     font-size: 16px;
@@ -274,7 +333,7 @@ footer {
   }
 
   #grad2 {
-    font-size: 40px;
+    font-size: 1.6rem;
     height: auto;
     padding: 10px;
   }
@@ -291,8 +350,9 @@ footer {
   }
 
   .subject-enrichment-title {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     text-shadow: none;
+    font-weight: bold;
   }
 
   .table-container {

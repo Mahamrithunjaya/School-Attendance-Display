@@ -13,7 +13,13 @@
 </head>
 
 <body>
-    <div id="grad2"><b>ABC School, XYZ</b></div>
+    
+    <div id="grad2">
+        <img src="../img/logo.png" alt="Logo 1" class="logo-left">
+        <b>ABC School, XYZ</b>
+        <img src="../img/logo_2.png" alt="Logo 2" class="logo-right">
+    </div>
+
     <br>
     <table>
         <tr>
