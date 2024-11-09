@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                 $_SESSION['role'] = 'principal';
                 $authenticated = true;
 
-                $options_html .= "<h2>Welcome, Principal!</h2>";
+                $options_html .= "<h2>Welcome, Principal!</h2> <img src='../img/Nerd Face.png' alt='Nerd Face' />";
                 $options_html .= "<div class='options'>";
                 $options_html .= "<h3>Select an option:</h3>";
                 $options_html .= "<ul>";
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                     // Password verified, set authenticated flag and options HTML
                     $authenticated = true;
 
-                    $options_html .= "<h2>Welcome, $username!</h2>";
+                    $options_html .= "<h2>Welcome, $username!</h2> <img src='../img/Nerd Face.png' alt='Nerd Face' />";
                     $options_html .= "<div class='options'>";
                     $options_html .= "<h3>Select an option:</h3>";
                     $options_html .= "<ul>";
@@ -131,7 +131,22 @@ $conn->close();
         }
 
         .logout {
-            position: fixed;
+            position: absolute;
+        }
+
+        h2 {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        img {
+            display: inline-block;
+            transition: 0.5s;
+            width: 3.5rem;
+            height: 3.5rem;
+            vertical-align: middle;
+            margin-left: 10px;
         }
 
         @media (max-width: 480px) {

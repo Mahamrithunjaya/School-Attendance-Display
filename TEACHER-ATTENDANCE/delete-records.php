@@ -80,14 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } else {
                         $error_message_all = "Error dropping class records: " . $conn->error;
                     }
-                    } else {
-                        $error_message_all = "No student records found for class $class.";
-                    }
                 } else {
-                    $error_message_all = "Deletion cancelled.";
+                    $error_message_all = "No student records found for class $class.";
                 }
+            } else {
+                $error_message_all = "Deletion cancelled.";
             }
         }
+    }
 }
 
 // Close connection
@@ -105,45 +105,66 @@ $conn->close();
     <title>Delete Records</title>
     <link rel="stylesheet" href="styles4.css">
     <style>
-    form {
-        max-width: 430px;
-    }
-
-    input[type='text'] {
-        width: 80%;
-        box-sizing: border-box;
-    }
-
-    input[type='submit'] {
-        width: 80%;
-        box-sizing: border-box;
-    }
-
-    .success-message,
-    .error-message {
-        color: green;
-        font-weight: bold;
-        margin-top: 20px;
-        text-align: center;
-        font-size: 30px;
-        animation: blink-animation 1s steps(5, start) infinite;
-    }
-
-    @keyframes blink-animation {
-        to {
-            visibility: hidden;
+        form {
+            max-width: 430px;
         }
-    }
 
-    .error-message {
-        color: red;
-    }
+        input[type='text'] {
+            width: 80%;
+            box-sizing: border-box;
+        }
 
-    .logout {
-        text-align: center;
-        position: static;
-        margin-top: 20px;
-    }
+        input[type='submit'] {
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        .success-message,
+        .error-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 30px;
+            animation: blink-animation 1s steps(5, start) infinite;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .logout {
+            text-align: center;
+            position: static;
+            margin-top: 20px;
+        }
+
+        h2 {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        img {
+            display: inline-block;
+            transition: 0.5s;
+            width: 3.5rem;
+            height: 3.5rem;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .delete-form {
+                margin-top: 35px;
+            }
+        }
     </style>
 </head>
 
@@ -156,7 +177,7 @@ $conn->close();
             <img src="../img/logo2.png" alt="Logo 2" class="logo-right">
         </div>
 
-        <h2 style="text-align: center;">Hi, <?php echo $_SESSION['username']; ?></h2>
+        <h2 style="text-align: center;">Hi, <?php echo $_SESSION['username']; ?></h2><img src='../img/Nerd Face.png' alt='Nerd Face' />
 
         <!-- Display Form for Deleting Records -->
         <div class="delete-form">

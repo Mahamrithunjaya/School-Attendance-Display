@@ -222,6 +222,21 @@ $conn->close();
         text-align: center;
         margin-top: 20px;
     }
+
+    h2 {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        img {
+            display: inline-block;
+            transition: 0.5s;
+            width: 3.5rem;
+            height: 3.5rem;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -306,7 +321,7 @@ $conn->close();
 
         <!-- Display Attendance Form -->
         <?php if (isset($students) && isset($_SESSION['total_days']) && isset($_SESSION['class']) && isset($_SESSION['month'])): ?>
-        <h2>Hello, <?php echo $_SESSION['username']; ?></h2>
+        <h2>Hello, <?php echo $_SESSION['username']; ?></h2><img src='../img/Nerd Face.png' alt='Nerd Face' />
         <!-- Logout Button -->
         <div class="logout">
             <form method="post" action="logout.php" style="width: fit-content;">
