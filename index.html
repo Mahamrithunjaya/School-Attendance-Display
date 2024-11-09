@@ -2,20 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../img/logo.png" sizes="16x16" />
     <title>ABC SCHOOL, XYZ</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body>
-    <header id="grad2">ABC SCHOOL, XYZ</header>
+    <header id="grad2">
+      <img src="./img/logo.png" alt="Logo 1" class="logo-left">
+      <span>ABC SCHOOL, XYZ</span>
+      <img src="./img/logo_2.png" alt="Logo 2" class="logo-right">
+    </header>
 
     <main>
       <section class="announcement">
         <p class="blink2">
-          <b
-            >ATTENDANCE AND HOMEWORK DISPLAY: 2024-25</b
-          >
+          <b>ATTENDANCE AND HOMEWORK DISPLAY: 2024-25</b>
         </p>
       </section>
 
@@ -23,8 +27,13 @@
         <div class="visitor-container">
           <span>VISITORS:</span>
           <!-- hitwebcounter Code START -->
-<a href="https://www.hitwebcounter.com" target="_blank">
-    <img src="https://hitwebcounter.com/counter/counter.php?page=16133032&style=0009&nbdigits=6&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a> 
+          <a href="https://www.hitwebcounter.com" target="_blank">
+            <img
+              src="https://hitwebcounter.com/counter/counter.php?page=16133032&style=0009&nbdigits=6&type=page&initCount=0"
+              title="Counter Widget"
+              alt="Visit counter For Websites"
+              border="0"
+          /></a>
         </div>
       </section>
 
@@ -39,9 +48,7 @@
             <a href="#">Subject Enrichment</a>
             <ul>
               <li>
-                <a href="SE/teacher_se.php"
-                  >SE Entry by Subject Teacher</a
-                >
+                <a href="SE/teacher_se.php">SE Entry by Subject Teacher</a>
               </li>
               <li>
                 <a href="SE/classwise_se.php">Display Classwise SE</a>
@@ -56,12 +63,30 @@
             <a href="#">Attendance (STUDENT)</a>
             <ul>
               <li>
-                <a href="STUDENT-ATTENDANCE/attendance-search.php">Check Attendance</a>
+                <a href="STUDENT-ATTENDANCE/attendance-search.php"
+                  >Check Attendance</a
+                >
               </li>
-              <li><a href="STUDENT-ATTENDANCE/attendance_analysis.php">Analysis</a></li>
-              <li><a href="STUDENT-ATTENDANCE/below_75pct.php">Attendance Below 75%</a></li>
-              <li><a href="STUDENT-ATTENDANCE/above_75pct.php">Attendance Above 75%</a></li>
-              <li><a href="STUDENT-ATTENDANCE/class_report-attendance.php">Class Report</a></li>
+              <li>
+                <a href="STUDENT-ATTENDANCE/attendance_analysis.php"
+                  >Analysis</a
+                >
+              </li>
+              <li>
+                <a href="STUDENT-ATTENDANCE/below_75pct.php"
+                  >Attendance Below 75%</a
+                >
+              </li>
+              <li>
+                <a href="STUDENT-ATTENDANCE/above_75pct.php"
+                  >Attendance Above 75%</a
+                >
+              </li>
+              <li>
+                <a href="STUDENT-ATTENDANCE/class_report-attendance.php"
+                  >Class Report</a
+                >
+              </li>
             </ul>
           </li>
           <li>
@@ -114,7 +139,8 @@
     </main>
 
     <footer>
-      &copy; <span id="current-year"></span> ABC SCHOOL, XYZ. All rights reserved.
+      &copy; <span id="current-year"></span> ABC SCHOOL, XYZ. All rights
+      reserved.
     </footer>
 
     <script>
@@ -173,10 +199,9 @@
       });
 
       // Get the current year
-    const currentYear = new Date().getFullYear();
-    // Set the year in the span with id "current-year"
-    document.getElementById('current-year').textContent = currentYear;
-    
+      const currentYear = new Date().getFullYear();
+      // Set the year in the span with id "current-year"
+      document.getElementById("current-year").textContent = currentYear;
     </script>
   </body>
 </html>
