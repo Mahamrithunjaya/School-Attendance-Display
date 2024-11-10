@@ -74,10 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
                     $options_html .= "<div class='options'>";
                     $options_html .= "<h3>Select an option:</h3>";
                     $options_html .= "<ul>";
-                    $options_html .= "<li><a href='insert_students.php'>INSERT NEW STUDENTS</a></li>";
-                    $options_html .= "<li><a href='update_class_attendance.php'>UPDATE ATTENDANCE</a></li>";
-                    $options_html .= "<li><a href='delete_records.php'>DELETE STUDENTS RECORDS</a></li>";
-                    $options_html .= "<li><a href='export_attendance.php'>EXPORT ATTENDANCE TO EXCEL</a></li>";
+                    $options_html .= "<li><a href='insert_students.php'>INSERT NEW STUDENTS<span></span><span></span><span></span><span></span></a></li>";
+                    $options_html .= "<li><a href='update_class_attendance.php'>UPDATE ATTENDANCE<span></span><span></span><span></span><span></span><div></div></a></li>";
+                    $options_html .= "<li><a href='delete_records.php'>DELETE STUDENTS RECORDS<span></span><span></span><span></span><span></span></a></li>";
+                    $options_html .= "<li><a href='export_attendance.php'>EXPORT ATTENDANCE TO EXCEL<span></span><span></span><span></span><span></span></a></li>";
                     $options_html .= "</ul>";
                     $options_html .= "</div>";
                 }

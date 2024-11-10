@@ -90,7 +90,7 @@ input[type="button"]:hover {
   background-color: #45a049;
 }
 
-.options {
+/*.options {
   text-align: center;
 }
 
@@ -150,6 +150,228 @@ input[type="button"]:hover {
 
 .options ul li:nth-child(4) a:hover {
   background-color: #c0810c;
+}*/
+
+.options {
+  text-align: center;
+}
+
+.options ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.options ul li {
+  margin-bottom: 10px;
+}
+
+/* General button styling */
+.options ul li a {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  width: 30%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button 1: Snake Border Effect */
+.options ul li:nth-child(1) a {
+  background-color: #383cc1; 
+  color: #fff;
+}
+.options ul li:nth-child(1) a span {
+  position: absolute;
+}
+.options ul li:nth-child(1) a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #0c002b, #6bd5ff);
+  animation: borderAnimation1 2s linear infinite;
+}
+.options ul li:nth-child(1) a span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #0c002b, #6bd5ff);
+  animation: borderAnimation2 2s linear infinite;
+  animation-delay: 1s;
+}
+.options ul li:nth-child(1) a span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, #0c002b, #6bd5ff);
+  animation: borderAnimation3 2s linear infinite;
+}
+.options ul li:nth-child(1) a span:nth-child(4) {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #0c002b, #6bd5ff);
+  animation: borderAnimation4 2s linear infinite;
+  animation-delay: 1s;
+}
+
+/* Button 2: Snake Border Effect */
+.options ul li:nth-child(2) a {
+  background-color: #27ac2e; 
+  color: #fff;
+}
+.options ul li:nth-child(2) a span {
+  position: absolute;
+}
+.options ul li:nth-child(2) a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #0c002b, #7cff6b);
+  animation: borderAnimation1 2s linear infinite;
+}
+.options ul li:nth-child(2) a span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #0c002b, #7cff6b);
+  animation: borderAnimation2 2s linear infinite;
+  animation-delay: 1s;
+}
+.options ul li:nth-child(2) a span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, #0c002b, #7cff6b);
+  animation: borderAnimation3 2s linear infinite;
+}
+.options ul li:nth-child(2) a span:nth-child(4) {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #0c002b, #7cff6b);
+  animation: borderAnimation4 2s linear infinite;
+  animation-delay: 1s;
+}
+
+/* Button 4: Snake Border Effect */
+.options ul li:nth-child(4) a {
+  background-color: #ff8b07; 
+  color: #333;
+  font-weight: bold;
+}
+.options ul li:nth-child(4) a span {
+  position: absolute;
+}
+.options ul li:nth-child(4) a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #0c002b, #ffcb5a);
+  animation: borderAnimation1 2s linear infinite;
+}
+.options ul li:nth-child(4) a span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #0c002b, #ffcb5a);
+  animation: borderAnimation2 2s linear infinite;
+  animation-delay: 1s;
+}
+.options ul li:nth-child(4) a span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, #0c002b, #ffcb5a);
+  animation: borderAnimation3 2s linear infinite;
+}
+.options ul li:nth-child(4) a span:nth-child(4) {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #0c002b, #ffcb5a);
+  animation: borderAnimation4 2s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes borderAnimation1 {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes borderAnimation2 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes borderAnimation3 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes borderAnimation4 {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+
+/* Button 3: Neon Effect */
+.options ul li:nth-child(3) a {
+  background-color: #ff0707;
+  color: #333;
+  font-weight: bold;
+  filter: hue-rotate(0deg);
+}
+.options ul li:nth-child(3) a:hover {
+  background: #ff0000;
+  color: #050801;
+  box-shadow: 0 0 5px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000, 0 0 200px #ff0000;
+}
+.options ul li:nth-child(3) a span {
+  position: absolute;
+  background: linear-gradient(to right, #0c002b, #ff0000);
+}
+.options ul li:nth-child(3) a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  animation: borderAnimation1 1s linear infinite;
+}
+.options ul li:nth-child(3) a span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  animation: borderAnimation2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+.options ul li:nth-child(3) a span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  animation: borderAnimation3 1s linear infinite;
+}
+.options ul li:nth-child(3) a span:nth-child(4) {
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  animation: borderAnimation4 1s linear infinite;
+  animation-delay: 0.25s;
 }
 
 .logout {
